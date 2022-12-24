@@ -5,6 +5,7 @@
     "build": "npm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
+    "start:dev": "concurrently \"npm run dev:css\" \"remix dev\"",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css"
   },
   "dependencies": {
@@ -14,6 +15,7 @@
     "@remix-run/vercel": "^1.9.0",
     "@vercel/node": "^2.6.2",
     "graphql": "^16.6.0",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -21,6 +23,7 @@
     "@remix-run/dev": "^1.9.0",
     "@remix-run/eslint-config": "^1.9.0",
     "@remix-run/serve": "^1.9.0",
+    "@types/lodash": "^4.14.191",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "autoprefixer": "^10.4.13",
