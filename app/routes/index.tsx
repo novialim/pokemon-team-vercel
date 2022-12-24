@@ -34,6 +34,17 @@ export default function Index() {
     pokemonData && setPokemonResults(updatedPokemonData!);
   }, [pokemonData]);
 
+  useEffect(() => {
+    const storedSelectedPokemons = JSON.parse(
+      localStorage.getItem("selectedPokemons") || "[]"
+    );
+    setSelectedPokemons(storedSelectedPokemons);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("selectedPokemons", JSON.stringify(selectedPokemons));
+  }, [selectedPokemons]);
+
   const handleClick = () => {
     getPokemon({ variables: { searchTerm: `%${searchTerm.toLowerCase()}%` } });
   };
@@ -65,8 +76,6 @@ export default function Index() {
       setPokemonResults(updatedPokemonResults);
     }
   };
-
-  console.log("pokemonResults", pokemonResults);
 
   return (
     <main className="p-4">
