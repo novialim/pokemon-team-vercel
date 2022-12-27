@@ -1,13 +1,14 @@
 import type { EntryContext } from "@remix-run/node";
-import { RemixServer } from "@remix-run/react";
-import { renderToString } from "react-dom/server";
+import { renderToString } from "react-dom/server"
+
 import {
-  ApolloProvider,
   ApolloClient,
-  InMemoryCache,
+  ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import { getDataFromTree } from "@apollo/client/react/ssr";
+  InMemoryCache
+} from "@apollo/client"
+import { getDataFromTree } from "@apollo/client/react/ssr"
+import { RemixServer } from "@remix-run/react"
 
 export default function handleRequest(
   request: Request, // Request type from the Fetch API

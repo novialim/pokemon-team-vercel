@@ -1,11 +1,12 @@
-import Search from "~/components/Search";
-import { useLazyQuery } from "@apollo/client";
-import gql from "graphql-tag";
-import React, { useEffect, useState } from "react";
-import type { PokemonData, PokemonDataResult } from "~/modals/pokemon";
-import PokemonCard from "~/components/PokemonCard";
-import PokemonResults from "~/components/PokemonResults";
+import gql from "graphql-tag"
+import React, { useEffect, useState } from "react"
+import PokemonCard from "~/components/PokemonCard"
+import PokemonResults from "~/components/PokemonResults"
+import Search from "~/components/Search"
 
+import { useLazyQuery } from "@apollo/client"
+
+import type { PokemonData, PokemonDataResult } from "~/modals/pokemon";
 const query = gql`
   query Pokemon($searchTerm: String!) {
     pokemon_v2_pokemon(limit: 100, where: { name: { _like: $searchTerm } }) {

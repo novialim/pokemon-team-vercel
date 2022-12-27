@@ -1,7 +1,7 @@
-import type { ApolloError } from "@apollo/client";
-import PokemonCard from "~/components/PokemonCard";
 import type { PokemonData } from "~/modals/pokemon";
+import PokemonCard from "~/components/PokemonCard"
 
+import type { ApolloError } from "@apollo/client";
 interface PokemonResultsProps {
   loading: boolean;
   error: ApolloError | undefined;
