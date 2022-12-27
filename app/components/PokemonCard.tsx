@@ -1,5 +1,6 @@
 import type { PokemonData } from "~/modals/pokemon";
-import { useEffect, useState } from "react";
+
+import { useEffect, useState } from "react"
 
 const xCircleLogo = (
   <svg
