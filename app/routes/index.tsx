@@ -1,5 +1,5 @@
 import gql from "graphql-tag"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import PokemonCard from "~/components/PokemonCard"
 import PokemonResults from "~/components/PokemonResults"
 import Search from "~/components/Search"
@@ -26,14 +26,20 @@ export default function Index() {
     useLazyQuery<PokemonDataResult>(query);
   const { pokemon_v2_pokemon: pokemonData }: PokemonDataResult = data || {};
 
-  const [pokemonResults, setPokemonResults] = useState<PokemonData[]>([]);
+  const [pokemonResults, setPokemonResults] = useState<
+    PokemonData[] | undefined
+  >([]);
 
-  useEffect(() => {
+  const memoizedPokemonResults = useMemo(() => {
     let updatedPokemonData = pokemonData?.map((pokemon: PokemonData) => {
       return { ...pokemon, selected: false };
     });
-    pokemonData && setPokemonResults(updatedPokemonData!);
+    return pokemonData ? updatedPokemonData : [];
   }, [pokemonData]);
+
+  useEffect(() => {
+    return setPokemonResults(memoizedPokemonResults);
+  }, [memoizedPokemonResults]);
 
   useEffect(() => {
     const storedSelectedPokemons = JSON.parse(
