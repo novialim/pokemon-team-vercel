@@ -1,11 +1,12 @@
-import Search from "~/components/Search";
-import { useLazyQuery } from "@apollo/client";
-import gql from "graphql-tag";
-import React, { useEffect, useState } from "react";
-import type { PokemonData, PokemonDataResult } from "~/modals/pokemon";
-import PokemonCard from "~/components/PokemonCard";
-import PokemonResults from "~/components/PokemonResults";
+import gql from "graphql-tag"
+import React, { useEffect, useState } from "react"
+import PokemonCard from "~/components/PokemonCard"
+import PokemonResults from "~/components/PokemonResults"
+import Search from "~/components/Search"
 
+import { useLazyQuery } from "@apollo/client"
+
+import type { PokemonData, PokemonDataResult } from '~/modals/pokemon';
 const query = gql`
   query Pokemon($searchTerm: String!) {
     pokemon_v2_pokemon(limit: 100, where: { name: { _like: $searchTerm } }) {
@@ -19,7 +20,7 @@ const query = gql`
 `;
 
 export default function Index() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedPokemons, setSelectedPokemons] = useState<PokemonData[]>([]);
   const [getPokemon, { loading, error, data }] =
     useLazyQuery<PokemonDataResult>(query);
@@ -28,11 +29,33 @@ export default function Index() {
   const [pokemonResults, setPokemonResults] = useState<PokemonData[]>([]);
 
   useEffect(() => {
-    let updatedPokemonData = pokemonData?.map((pokemon: PokemonData) => {
-      return { ...pokemon, selected: false };
+    let updatedPokemonResults = Array.isArray(pokemonData)
+      ? [...pokemonData]
+      : [];
+
+    // create a Set of selected pokemon names to reduce time complexity
+    const selectedPokemonNames = new Set(
+      selectedPokemons.map((pokemon) => pokemon.name)
+    );
+
+    // set default selected value to false for each pokemon
+    updatedPokemonResults = updatedPokemonResults.map((pokemon) => {
+      return { ...pokemon, selected: selectedPokemonNames.has(pokemon.name) };
     });
-    pokemonData && setPokemonResults(updatedPokemonData!);
-  }, [pokemonData]);
+
+    setPokemonResults(updatedPokemonResults);
+  }, [pokemonData, selectedPokemons]);
+
+  useEffect(() => {
+    const storedSelectedPokemons = JSON.parse(
+      localStorage.getItem('selectedPokemons') || '[]'
+    );
+    setSelectedPokemons(storedSelectedPokemons);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('selectedPokemons', JSON.stringify(selectedPokemons));
+  }, [selectedPokemons]);
 
   const handleClick = () => {
     getPokemon({ variables: { searchTerm: `%${searchTerm.toLowerCase()}%` } });
@@ -62,24 +85,22 @@ export default function Index() {
     let index = updatedPokemonResults?.findIndex((pokemon) => pokemon.id == id);
     if (index !== -1 && updatedPokemonResults && index !== undefined) {
       updatedPokemonResults[index].selected = state;
-      setPokemonResults(updatedPokemonResults);
+      setPokemonResults([...updatedPokemonResults]);
     }
   };
 
-  console.log("pokemonResults", pokemonResults);
-
   return (
-    <main className="p-4">
-      <div className="flex">
-        <div className="w-1/2">
-          <h1 className="pb-2">Welcome to Pokemon Team</h1>
+    <main className='p-4'>
+      <div className='flex'>
+        <div className='w-1/2'>
+          <h1 className='pb-2'>Welcome to Pokemon Team</h1>
           <Search
             searchTerm={searchTerm}
             handleChange={handleChange}
             handleClick={handleClick}
           />
           <div>My Pokémons</div>
-          <div className="flex flex-wrap">
+          <div className='flex flex-wrap'>
             {selectedPokemons &&
               selectedPokemons.map((pokemon) => {
                 return (
@@ -94,7 +115,7 @@ export default function Index() {
               })}
           </div>
         </div>
-        <div className="w-1/2">
+        <div className='w-1/2'>
           {pokemonResults && (
             <PokemonResults
               loading={loading}

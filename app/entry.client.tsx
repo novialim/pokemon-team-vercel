@@ -1,6 +1,7 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { RemixBrowser } from "@remix-run/react";
-import { hydrate } from "react-dom";
+import { hydrate } from "react-dom"
+
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client"
+import { RemixBrowser } from "@remix-run/react"
 
 function Client() {
   const client = new ApolloClient({

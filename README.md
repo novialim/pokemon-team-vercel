@@ -1,19 +1,16 @@
-# Welcome to Remix!
+# Welcome to [Pokemon team building app](https://pokemon-team-vercel.vercel.app/)!
 
-- [Remix Docs](https://remix.run/docs)
+Features in this app:
+- Searching of pokemons
+- Selection/deselection of pokemon (up to 6) to join your team
+- Local data persistency through refresh
 
-## Deployment
-
-After having run the `create-remix` command and selected "Vercel" as a deployment target, you only need to [import your Git repository](https://vercel.com/new) into Vercel, and it will be deployed.
-
-If you'd like to avoid using a Git repository, you can also deploy the directory by running [Vercel CLI](https://vercel.com/cli):
-
-```sh
-npm i -g vercel
-vercel
-```
-
-It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
+## Technology
+- Framework: [Remix](https://remix.run/)
+- GraphQl Client: [Apollo Client](https://www.apollographql.com/apollo-client/)
+- Deployment: [Vercel](https://vercel.com/cara-app)
+- Styling Framework: [Tailwind](https://tailwindcss.com/)
+- Language: [Typescript](https://www.typescriptlang.org/)
 
 ## Development
 
@@ -27,6 +24,7 @@ Afterwards, start the Remix development server like so:
 
 ```sh
 npm run dev
+yarn start:dev
 ```
 
 Open up [http://localhost:3000](http://localhost:3000) and you should be ready to go!
