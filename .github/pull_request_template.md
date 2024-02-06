@@ -19,7 +19,7 @@ Briefly describe the changes introduced by this PR. Include any relevant context
 -->
 
 
-## 🖼️ Screenshots (optional):
+## 🖼️ Screenshots / Recordings (optional):
 
 <!---
 
@@ -42,12 +42,7 @@ addressed, and remove any items that are not relevant to this PR.
 -->
 
 - [ ] **Code Review**: Did I review my own code before submitting this PR? 
-
-- [ ] **Test Instructions**: Have I provided clear instructions for reviewers to test the code locally?
-
-- [ ] **Debugging**: Have I removed all unintentional `console.log` statements after debugging?
-
 - [ ] **Naming Conventions**: Did I use clear and concise names for variables and functions?
-
-
-
+- [ ] **DRY Principle**: Did I identify and eliminate any repeated code or logic blocks that could be modularized or abstracted into reusable functions or components?
+- [ ] **Debugging**: Have I removed all unintentional `console.log` statements after debugging?
+- [ ] **Test Instructions**: Have I provided clear instructions for reviewers to test the code locally?
