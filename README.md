@@ -1,9 +1,16 @@
-# Welcome to Pokemon team building app!
+# Welcome to [Pokemon team building app](https://pokemon-team-vercel.vercel.app/)!
 
 Features in this app:
 - Searching of pokemons
 - Selection/deselection of pokemon (up to 6) to join your team
 - Local data persistency through refresh
+
+## Technology
+- Framework: [Remix](https://remix.run/)
+- GraphQl Client: [Apollo Client](https://www.apollographql.com/apollo-client/)
+- Deployment: [Vercel](https://vercel.com/cara-app)
+- Styling Framework: [Tailwind](https://tailwindcss.com/)
+- Language: [Typescript](https://www.typescriptlang.org/)
 
 ## Development
 
